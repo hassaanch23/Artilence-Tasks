@@ -1,0 +1,23 @@
+# ---- Core (lightweight, install first) ----
+python-dotenv>=1.0      # loads the .env file into environment variables
+tiktoken>=0.7           # see how text is split into tokens (OpenAI's tokenizer)
+
+# ---- OpenAI provider ----
+openai>=1.40            # official OpenAI Python SDK
+
+# ---- Hugging Face provider (HEAVY: downloads ~hundreds of MB) ----
+# Version notes (a real compatibility story worth understanding):
+#   * On x86_64 macOS, PyTorch's LAST published wheel is 2.2.2 -> we cap torch there.
+#   * transformers 5.x requires torch >= 2.4, so we cap transformers < 5.
+#   * torch 2.2.2 was built against NumPy 1.x, so we must keep numpy < 2.
+torch>=2.2,<2.3         # backend that runs the model (x86_64 macOS caps at 2.2.2)
+transformers>=4.44,<5   # model + pipeline API (5.x needs torch>=2.4)
+numpy<2                 # torch 2.2.2 breaks on NumPy 2.x
+sentencepiece>=0.1.99   # tokenizer used by T5 / flan-t5 models
+
+# ---- Notebook environment ----
+jupyter>=1.0
+
+# NOTE: after everything installs and works, we lock EXACT versions with:
+#   pip freeze > requirements.txt
+# That guarantees your lead recreates the identical environment.
