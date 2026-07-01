@@ -165,6 +165,19 @@ You: What is my name?                Bot: Sam           (correct -> MEMORY WORKS
 
 The final "Sam" is the key result: only possible because past turns are fed back into the prompt.
 
+### Same code, bigger model — OpenAI `gpt-4o-mini`
+Flipping `LLM_PROVIDER=openai` in `.env` (no code change) re-ran the identical prompts on a far larger model:
+
+| Task | flan-t5-base (local) | gpt-4o-mini (OpenAI) |
+|---|---|---|
+| Math `3×4` (=12) | `3` / `3` / `36` — all wrong | `12` / `12` / `12` — all correct |
+| Initials "Grace Hopper" | `GH` / `G.H.` / babble | `G.H.` / `G.H.` / `G.H.` |
+| Sentiment | `negative` ×3 | `negative` ×3 (CoT adds nuanced analysis) |
+
+Observation: the capable model is correct even **zero-shot**, so prompt engineering matters *most*
+for weaker models. On strong models you still use few-shot to control **format/brevity** and CoT
+for genuinely hard reasoning.
+
 ### The headline takeaway
 Prompt engineering changes model **behavior** (format, reasoning, memory) but cannot exceed the
 model's underlying capability. The biggest quality lever is the model itself — which is exactly
