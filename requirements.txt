@@ -1,0 +1,22 @@
+# ---- LangChain 1.x (agent + RAG building blocks, reused from Phases 3 & 4) ----
+langchain>=1.0                 # create_agent + tools + LCEL
+langchain-openai>=1.0          # ChatOpenAI + OpenAIEmbeddings
+langchain-text-splitters>=1.0  # RecursiveCharacterTextSplitter (chunking the FAQs)
+langchain-community>=0.4       # FAISS vector-store wrapper
+langgraph>=1.0                 # create_agent runtime + checkpointer (memory)
+
+# ---- Vector DB ----
+faiss-cpu>=1.8                 # local FAQ index (Pinecone alt: pip install langchain-pinecone)
+
+# ---- Deployment (two targets) ----
+streamlit>=1.37               # chat UI
+fastapi>=0.110                # REST API
+uvicorn>=0.29                 # ASGI server that runs the FastAPI app
+
+# ---- Config ----
+python-dotenv>=1.0
+
+# Live tools (weather + stock) use the Python stdlib (urllib) against keyless public
+# APIs, so they need no extra packages or keys.
+#
+# After install works, lock exact versions:  pip freeze > requirements-lock.txt

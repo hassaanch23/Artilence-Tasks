@@ -1,0 +1,20 @@
+# ---- Secrets (NEVER commit these) ----
+.env
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ---- RAG build artifact (regenerated from data/faqs.md) ----
+faiss_index/
+*.db
+*.sqlite3
+
+# ---- OS noise ----
+.DS_Store
+
+# NOTE: data/faqs.md IS committed on purpose — it is the knowledge base the bot answers from.
