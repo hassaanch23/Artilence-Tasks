@@ -1,0 +1,21 @@
+# ---- LangChain 1.x (RAG building blocks) ----
+langchain>=1.0                 # core framework + LCEL (the | pipe from Phase 2)
+langchain-openai>=1.0          # ChatOpenAI + OpenAIEmbeddings
+langchain-text-splitters>=1.0  # RecursiveCharacterTextSplitter
+langchain-community>=0.4       # PyPDFLoader + FAISS wrapper
+#   ^ langchain-community is being sunset in favour of standalone integration
+#     packages, but it is still where PyPDFLoader and the FAISS vector-store
+#     wrapper live in this version. Both are exactly what the brief asks for.
+
+# ---- Vector DB + PDF ----
+faiss-cpu>=1.8                 # local vector index (Pinecone alt: pip install langchain-pinecone)
+pypdf>=4.0                     # PDF text extraction (backs PyPDFLoader)
+
+# ---- App + config ----
+streamlit>=1.37               # PDF upload + chat UI
+python-dotenv>=1.0             # loads OPENAI_API_KEY from .env
+
+# reportlab is used ONLY to generate data/sample.pdf (a dev fixture), not to run
+# the app, so it is intentionally NOT listed as a runtime dependency.
+#
+# After install works, lock exact versions:  pip freeze > requirements-lock.txt
