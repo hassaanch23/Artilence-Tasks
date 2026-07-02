@@ -1,15 +1,3 @@
-"""
-hello.py
---------
-Step 3 sanity check: prove the whole client works end to end.
-
-Run it from the project root:
-    python -m src.hello
-
-It uses whatever provider `.env` selects (defaults to local Hugging Face,
-so it needs no API key).
-"""
-
 from src.llm_client import get_client
 
 

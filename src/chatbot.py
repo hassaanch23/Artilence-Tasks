@@ -1,22 +1,3 @@
-"""
-chatbot.py
-----------
-A simple chatbot with two things a real chatbot needs:
-  1. a conversation loop (read -> reply -> repeat)
-  2. memory (past turns are fed back in, so it can refer to earlier messages)
-
-Run interactively:
-    python -m src.chatbot
-Run the scripted proof-of-memory demo (no typing needed):
-    python -m src.chatbot --demo
-
-NOTE ON SCOPE:
-  We flatten the conversation into ONE text prompt and call `client.generate()`.
-  That keeps the chatbot provider-agnostic (works with Hugging Face today, OpenAI
-  later) with zero interface changes. A production build on OpenAI/Claude would
-  pass the history as native role-tagged messages instead of flattened text.
-"""
-
 import sys
 
 from src.llm_client import get_client

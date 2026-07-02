@@ -1,16 +1,3 @@
-"""
-prompts.py
-----------
-Builds the three prompt styles we compare in the playground:
-zero-shot, few-shot, and Chain-of-Thought.
-
-WHY a `Task` object instead of hard-coded prompt strings?
-  A "task" is: an instruction + some example (input, output) pairs. Keeping that
-  data in one place means every style is built from the SAME source of truth, so
-  the comparison is fair (only the *style* changes, not the wording). Adding a new
-  task = create one `Task`, not rewrite three prompt functions.
-"""
-
 from dataclasses import dataclass, field
 
 

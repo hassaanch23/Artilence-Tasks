@@ -1,15 +1,3 @@
-"""
-playground.py
--------------
-The Prompt Engineering Playground.
-
-It runs the SAME question through all three prompt styles against the SAME model,
-so you can see exactly how the prompt style changes the answer.
-
-Run it from the project root:
-    python -m src.playground
-"""
-
 from src.llm_client import get_client
 from src.prompts import Task, STYLES
 

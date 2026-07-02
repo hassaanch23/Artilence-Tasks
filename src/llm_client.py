@@ -1,22 +1,3 @@
-"""
-llm_client.py
--------------
-The swappable LLM wrapper — the heart of this project.
-
-THE BIG IDEA (defend this in the PR):
-  Every part of our app talks to LLMs through ONE small interface: `LLMClient`.
-  It never imports `openai` or `transformers` directly. So swapping OpenAI for
-  Hugging Face (or adding Claude later) means adding ONE class here and changing
-  nothing else. This is the "program to an interface, not an implementation"
-  principle.
-
-WHY the imports are inside the methods ("lazy imports"):
-  If we imported `openai` and `torch` at the top, a user would need BOTH
-  installed just to use one. By importing inside each class, you only need the
-  library for the provider you actually use. Great for the "no key yet" case:
-  the OpenAI code exists but never forces you to install/configure anything.
-"""
-
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
@@ -44,10 +25,12 @@ class OpenAIClient(LLMClient):
                 "or use the 'huggingface' provider which needs no key."
             )
         from openai import OpenAI  # lazy import
+
         self._client = OpenAI(api_key=self._api_key)
 
-    def generate(self, prompt: str, temperature: float = 0.7,
-                 max_tokens: int = 256) -> str:
+    def generate(
+        self, prompt: str, temperature: float = 0.7, max_tokens: int = 256
+    ) -> str:
         response = self._client.chat.completions.create(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
@@ -63,6 +46,7 @@ class HuggingFaceClient(LLMClient):
     def __init__(self, model: str | None = None):
         self.model = model or config.HF_MODEL
         from transformers import pipeline  # lazy import (transformers + torch)
+
         # flan-t5 is a text2text (seq2seq) instruction model.
         self._pipe = pipeline("text2text-generation", model=self.model)
 
@@ -81,6 +65,4 @@ def get_client(provider: str | None = None) -> LLMClient:
         return OpenAIClient()
     if provider in ("huggingface", "hf"):
         return HuggingFaceClient()
-    raise ValueError(
-        f"Unknown provider: {provider!r}. Use 'openai' or 'huggingface'."
-    )
+    raise ValueError(f"Unknown provider: {provider!r}. Use 'openai' or 'huggingface'.")
