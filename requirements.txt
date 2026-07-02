@@ -1,0 +1,16 @@
+# ---- LangChain 1.x (agents live here now) ----
+langchain>=1.0             # create_agent + tool abstractions
+langchain-openai>=1.0      # ChatOpenAI chat model + OpenAIEmbeddings
+langgraph>=1.0             # runtime create_agent compiles to (checkpointer = memory)
+
+# ---- Tools ----
+ddgs>=9.0                  # keyless DuckDuckGo web search (fallback when no Google key)
+# Google Custom Search uses the Python stdlib (urllib) -- no package needed.
+
+# ---- App + config ----
+streamlit>=1.37            # browser chat UI for the Research Assistant
+python-dotenv>=1.0          # loads OPENAI_API_KEY / Google keys from .env
+
+# SQLite long-term memory uses Python's built-in `sqlite3` -- no package needed.
+#
+# After install works, lock exact versions:  pip freeze > requirements-lock.txt

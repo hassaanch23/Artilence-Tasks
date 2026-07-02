@@ -1,0 +1,21 @@
+# ---- Secrets (NEVER commit these) ----
+.env
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ---- Local data (SQLite long-term memory) ----
+*.db
+*.sqlite3
+
+# ---- Hugging Face / model caches (can be very large) ----
+.cache/
+hf_cache/
+
+# ---- OS noise ----
+.DS_Store
