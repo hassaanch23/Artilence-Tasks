@@ -1,0 +1,12 @@
+# ---- LangChain 1.x (structured output over OpenAI) ----
+langchain-openai>=1.0      # ChatOpenAI + .with_structured_output()
+langchain-core>=1.0        # base Runnable/BaseModel plumbing (pulled in by langchain-openai)
+
+# ---- App + config ----
+streamlit>=1.37           # paste-code review UI
+python-dotenv>=1.0         # loads OPENAI_API_KEY from .env
+
+# pydantic (used for the Finding/ReviewResult schema) ships with langchain-core.
+# The git-diff reviewer uses the stdlib `subprocess` — no extra package.
+#
+# After install works, lock exact versions:  pip freeze > requirements-lock.txt

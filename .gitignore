@@ -1,0 +1,16 @@
+# ---- Secrets (NEVER commit these) ----
+.env
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ---- OS noise ----
+.DS_Store
+
+# NOTE: examples/sample_code.py IS committed on purpose — it's the demo input,
+# intentionally flawed so the reviewer has something to find.
